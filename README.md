@@ -1,7 +1,6 @@
 # mgob
 
-[![Build Status](https://travis-ci.org/stefanprodan/mgob.svg?branch=master)](https://travis-ci.org/stefanprodan/mgob)
-[![Docker Pulls](https://img.shields.io/docker/pulls/stefanprodan/mgob)](https://hub.docker.com/r/stefanprodan/mgob/)
+Build status: https://app.circleci.com/pipelines/github/oqton/mgob
 
 MGOB is a MongoDB backup automation tool built with Go.
 
