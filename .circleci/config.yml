@@ -218,7 +218,10 @@ jobs:
   <<: *oqton_default_jobs
   build_commit:
     docker:
-      - image: alpine
+      - image: quay.io/oqton/container-cli-ops:latest
+        auth:
+          username: ${QUAY_USERNAME}
+          password: ${QUAY_PASSWORD}
     working_directory: /go/src/github.com/oqton/mgob
     steps:
       - checkout
