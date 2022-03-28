@@ -218,14 +218,16 @@ jobs:
   <<: *oqton_default_jobs
   build_commit:
     docker:
-      - image: quay.io/oqton/container-cli-ops:latest
+      - image: cimg/go:1.17
+        user: root
         auth:
           username: ${QUAY_USERNAME}
           password: ${QUAY_PASSWORD}
     working_directory: /go/src/github.com/oqton/mgob
     steps:
       - checkout
-      - setup_remote_docker
+      - setup_remote_docker:
+          docker_layer_caching: true
       - run:
           name: Building Source
           command: |
