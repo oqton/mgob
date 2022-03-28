@@ -20,6 +20,11 @@ build:
 	    --build-arg BUILD_DATE=$(BUILD_DATE) \
 	    --build-arg VCS_REF=$(TRAVIS_COMMIT) \
 	    --build-arg VERSION=$(APP_VERSION) \
+	    --build-arg EN_GCLOUD=true \
+	    --build-arg EN_AWS_CLI=true \
+	    --build-arg EN_RCLONE=true \
+	    --build-arg EN_AZURE=true \
+	    --build-arg EN_GPG=true \
 	    -t $(REPOSITORY)/mgob:$(APP_VERSION) .
 
 aws:
