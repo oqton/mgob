@@ -220,9 +220,6 @@ jobs:
     docker:
       - image: cimg/go:1.17
         user: root
-        auth:
-          username: ${QUAY_USERNAME}
-          password: ${QUAY_PASSWORD}
     working_directory: /go/src/github.com/oqton/mgob
     steps:
       - checkout
