@@ -51,7 +51,8 @@ then
     --path-update=true\
     --bash-completion=true\
     --rc-path=/.bashrc
-  export PATH="${PATH}:/google-cloud-sdk/bin"
+  echo 'export PATH=$PATH:/google-cloud-sdk/bin' >> /etc/profile
+
   gcloud config set core/disable_usage_reporting true
   gcloud config set component_manager/disable_update_check true
   gcloud config set metrics/environment github_docker_image

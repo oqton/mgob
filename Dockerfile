@@ -67,8 +67,8 @@ WORKDIR /
 
 COPY build.sh /tmp
 RUN /tmp/build.sh
-ENV PATH="${PATH}:/google-cloud-sdk/bin"
-
+#set $ENV
+ENV ENV=/etc/profile
 COPY --from=mgob-builder /go/src/github.com/stefanprodan/mgob/mgob .
 COPY --from=tools-builder /go/mongo-tools/bin/* /usr/bin/
 
