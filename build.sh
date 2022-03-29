@@ -46,6 +46,12 @@ then
   mv google-cloud-sdk /
   rm google-cloud-sdk-${GOOGLE_CLOUD_SDK_VERSION}-linux-x86_64.tar.gz
   ln -s /lib /lib64
+  google-cloud-sdk/install.sh\
+    --usage-reporting=true\
+    --path-update=true\
+    --bash-completion=true\
+    --rc-path=/.bashrc
+  echo 'export PATH=$PATH:/google-cloud-sdk/bin' >> /etc/profile
   gcloud config set core/disable_usage_reporting true
   gcloud config set component_manager/disable_update_check true
   gcloud config set metrics/environment github_docker_image
