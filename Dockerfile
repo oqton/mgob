@@ -4,7 +4,7 @@ ARG AWS_CLI_VERSION=1.22.46
 ARG EN_AZURE=true
 ARG AZURE_CLI_VERSION=2.32.0
 ARG EN_GCLOUD=true
-ARG GOOGLE_CLOUD_SDK_VERSION=370.0.0
+ARG GOOGLE_CLOUD_SDK_VERSION=378.0.0
 ARG EN_GPG=true
 ARG GNUPG_VERSION="2.2.31-r1"
 ARG EN_MINIO=true
@@ -67,6 +67,7 @@ WORKDIR /
 
 COPY build.sh /tmp
 RUN /tmp/build.sh
+ENV PATH="${PATH}:/google-cloud-sdk/bin"
 
 COPY --from=mgob-builder /go/src/github.com/stefanprodan/mgob/mgob .
 COPY --from=tools-builder /go/mongo-tools/bin/* /usr/bin/
