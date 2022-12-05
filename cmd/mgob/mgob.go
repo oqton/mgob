@@ -1,11 +1,15 @@
 package main
 
 import (
-	"github.com/kelseyhightower/envconfig"
+	"fmt"
+	"net/http"
 	"os"
 	"os/signal"
 	"path"
 	"syscall"
+
+	"github.com/kelseyhightower/envconfig"
+	"github.com/prometheus/client_golang/prometheus/promhttp"
 
 	log "github.com/sirupsen/logrus"
 	"github.com/urfave/cli"
@@ -79,6 +83,11 @@ func main() {
 			Usage: "Host to bind the HTTP server on",
 			Value: "",
 		},
+		cli.IntFlag{
+			Name:  "MetricsPort,m",
+			Usage: "Port to expose the metrics on",
+			Value: 8091,
+		},
 		cli.BoolFlag{
 			Name:  "JSONLog,j",
 			Usage: "logs in JSON format",
@@ -146,6 +155,9 @@ func start(c *cli.Context) error {
 	}
 	log.Infof("starting http server on port %v", appConfig.Port)
 	go server.Start(appConfig.Version)
+
+	log.Infof("starting metrics server on port %v", appConfig.MetricsPort)
+	go http.ListenAndServe(fmt.Sprintf(":%d", c.Int("MetricsPort")), promhttp.Handler())
 
 	// wait for SIGINT (Ctrl+C) or SIGTERM (docker stop)
 	sigChan := make(chan os.Signal, 1)

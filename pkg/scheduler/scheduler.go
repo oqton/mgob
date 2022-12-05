@@ -103,6 +103,8 @@ func (b backupJob) Run() {
 		backupLog = fmt.Sprintf("Backup finished in %v archive %v size %v",
 			res.Duration, res.Name, humanize.Bytes(uint64(res.Size)))
 
+		b.metrics.LastRun.WithLabelValues(b.plan.Name, status).Set(float64(time.Now().Unix()))
+
 		log.WithField("plan", b.plan.Name).Info(backupLog)
 		if err := notifier.SendNotification(fmt.Sprintf("%v backup finished", b.plan.Name),
 			fmt.Sprintf("%v backup finished in %v archive size %v",
