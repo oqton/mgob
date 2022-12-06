@@ -5,6 +5,7 @@ type AppConfig struct {
 	JSONLog     bool   `json:"json_log"`
 	Host        string `json:"host"`
 	Port        int    `json:"port"`
+	MetricsPort int    `json:"metrics_port"`
 	ConfigPath  string `json:"config_path"`
 	StoragePath string `json:"storage_path"`
 	TmpPath     string `json:"tmp_path"`
